@@ -20,7 +20,7 @@ class Population :
             
         print("proba: ", self.proba_totale)
 
-    def selection (self): # et peut etre tableau des fitness):
+    def selection (self): # et peut etre tableau des fitness:
         # uniforme, rang, fitness -> versino tournoi 
         
         numrandom = random.random()
