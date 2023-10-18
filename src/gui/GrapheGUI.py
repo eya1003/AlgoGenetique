@@ -2,7 +2,7 @@ from core.Graphe import *
 from gui.VilleGUI import *
 from gui.RouteGUI import *
 
-color_parcours = "#FF0000"
+color_parcours = "#0000FF"
 
 class GrapheGUI :
 

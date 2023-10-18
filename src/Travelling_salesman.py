@@ -15,10 +15,24 @@ r = Region ( w, h, nb_villes )
 g = Graphe ( r, nb_villes )
 
 # Insérer votre code ici
-chemin = main(g)
-
-
+chemin = main(g, r)
 g.setBestParcours ( chemin )
+
+# eya essaie d'afficher des informations du ville
+ville_visitees= []
+for i in chemin:
+    #afficher pour chaque ville son abscisse , ordonne et numero
+    ville = g.region.getVilles()[i]
+    abscisse= ville.getAbscisse()
+    ordonne = ville.getOrdonnee()
+    numero = ville.getNumero()
+    print(abscisse, ordonne, numero)
+    #if i in ville_visitees:
+     #   print(f"Ville {i} est dupliquée")
+    #else:
+    #    ville_visitees.append(i)
+
+
 
 # Affichage du résultat
 print ( "Distance finale :", int(g.getLongueurParcours(g.getBestParcours())), "kilomètres" )

@@ -33,14 +33,12 @@ class Individu :
             self.genome[a] = self.genome[b]
             self.genome[b] = gardeA
 
-    def evaluation (self, g):
+    def evaluation (self, g, parcours):
         #if len du tabeau si le tableau est pas egale à 100 (moins u plus)
 #faire proba totale peut etre ici
-        o = min(g.getLongueurParcours(g.getBestParcours()))
-        p =  100
+        self.fitness = g.getLongueurParcours(parcours)
+        penalite = 1000
         if len(self.genome) != 100 or (len(self.genome) != len(set(self.genome))):
-            self.fitness -= abs(100- len(self.genome)) # a changer : obj - penalités
+            self.fitness += penalite   # a changer : obj - penalités
             print("self.fitness" ,self.fitness)
-        #else: 
-            #print("pas de doublosn et égal à 100")
         return self.fitness
