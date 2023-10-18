@@ -1,6 +1,7 @@
 import copy
 import random
 
+
 class Individu :
     def __init__(self): 
         self.genome = [ i for i in range(100) ]
@@ -31,14 +32,13 @@ class Individu :
             gardeA = self.genome[a]
             self.genome[a] = self.genome[b]
             self.genome[b] = gardeA
-            return(self.genome)
-        else:
-            return(self.genome)
 
     def evaluation (self):
         #if len du tabeau si le tableau est pas egale à 100 (moins u plus)
-
-        if len(self.genome) != 100 :
+#faire proba totale peut etre ici
+        if len(self.genome) != 100 or (len(self.genome) != len(set(self.genome))):
             self.fitness -= abs(100- len(self.genome)) # a changer : obj - penalités
-            print(self.fitness)
+            print("self.fitness" ,self.fitness)
+        #else: 
+            #print("pas de doublosn et égal à 100")
         return self.fitness

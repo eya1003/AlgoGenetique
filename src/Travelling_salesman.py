@@ -15,10 +15,10 @@ r = Region ( w, h, nb_villes )
 g = Graphe ( r, nb_villes )
 
 # Insérer votre code ici
-main()
+chemin = main()
 
 
-g.setBestParcours ( [ 0, 1, 2 ] )
+g.setBestParcours ( chemin )
 
 # Affichage du résultat
 print ( "Distance finale :", int(g.getLongueurParcours(g.getBestParcours())), "kilomètres" )

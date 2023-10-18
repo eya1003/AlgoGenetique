@@ -5,7 +5,7 @@ from core.Ville import Ville
 
 def main ():
     population = Population()
-    populationEnfants = [0]*len(population.population)
+    populationEnfants = []
     for i in range (10) :
         print("truc")
         for individu in population.population:
@@ -17,14 +17,16 @@ def main ():
             p1 = population.selection ()
             p2 = population.selection () 
             (e1, e2) = p1.croisement( p2)
-            e1 = e1.mutation ()
-            e2 = e2.mutation()
+            e1.mutation ()
+            e2.mutation()
             populationEnfants.append(e1)
             populationEnfants.append(e2)
-            # afficher les villes dans le tableu 
-            print(Region.getVilles)
-        print(i)
-    population.setPopulation(populationEnfants)
+            # afficher les villes dans le tableau
+        print ( type(populationEnfants[0]) )
+        
+        population.setPopulation(populationEnfants)
+        
+    return population.population[0].genome
 
 #if __name__ == '__main__' :
  #   sys.exit(main())

@@ -14,11 +14,15 @@ class Population :
     def calcul_proba ( self ) :
         total_fitness = sum(individu.fitness for individu in self.population)
         self.proba = [individu.fitness/total_fitness for individu in self.population]
+        self.proba_totale = 0
+        for i in range (len(self.proba)):
+            self.proba_totale += self.proba[i]
+            
+        print("proba: ", self.proba_totale)
 
     def selection (self): # et peut etre tableau des fitness):
         # uniforme, rang, fitness -> versino tournoi 
         
-
         numrandom = random.random()
         somme = 0
 

@@ -1,7 +1,7 @@
 from core.Route import *
 from tkinter import *
 
-color = "#008800"
+color = "#2658CB"
 
 class RouteGUI :
 
