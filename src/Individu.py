@@ -5,6 +5,7 @@ import random
 class Individu :
     def __init__(self): 
         self.genome = [ i for i in range(100) ]
+        random.shuffle(self.genome)
         self.variableMutation = 20
         self.fitness = 100
         
@@ -25,7 +26,9 @@ class Individu :
 
 
     def mutation (self):
-        resultat = random.randint(0, 1000000)
+        #resultat = random.randint(0, 1000000)
+        resultat = random.randint(0, 100)
+        #print("résultat = ", resultat)
         if(resultat < self.variableMutation):
             a = random.randint(0,100)
             b = random.randint(0,100)

@@ -26,9 +26,9 @@ for i in chemin:
     abscisse= ville.getAbscisse()
     ordonne = ville.getOrdonnee()
     numero = ville.getNumero()
-    print(abscisse, ordonne, numero)
+    #print(abscisse, ordonne, numero)
     #if i in ville_visitees:
-     #   print(f"Ville {i} est dupliquée")
+    #   print(f"Ville {i} est dupliquée")
     #else:
     #    ville_visitees.append(i)
 
