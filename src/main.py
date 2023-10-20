@@ -7,11 +7,11 @@ from core.Graphe import Graphe
 def main (graphe, r):
     population = Population()
     populationEnfants = []
-    for i in range (1) :
+    for i in range (10) :
         #print("truc")
         population.calcul_proba()
         
-        for j in range ( int(2 / 2) ): #penser a mettre 1000000
+        for j in range ( int(10 / 2) ): #penser a mettre 1000000
             p1 = population.selection ()
             #print(p1.genome)
             p2 = population.selection () 
