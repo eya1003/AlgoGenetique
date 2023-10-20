@@ -6,6 +6,7 @@ class Individu :
     def __init__(self): 
         self.genome = [ i for i in range(100) ]
         random.shuffle(self.genome)
+        self.reference =  [ i for i in range(100) ]
         self.variableMutation = 20
         self.fitness = 100
         
@@ -35,13 +36,29 @@ class Individu :
             gardeA = self.genome[a]
             self.genome[a] = self.genome[b]
             self.genome[b] = gardeA
-
-    def evaluation (self, g, parcours):
-        #if len du tabeau si le tableau est pas egale à 100 (moins u plus)
-#faire proba totale peut etre ici
+            
+            
+    def evaluation(self, g, parcours):
         self.fitness = g.getLongueurParcours(parcours)
         penalite = 1000
-        if len(self.genome) != 100 or (len(self.genome) != len(set(self.genome))):
-            self.fitness += penalite   # a changer : obj - penalités
-            print("self.fitness" ,self.fitness)
+        total_penalites = 0
+
+        if len(self.genome) != 100:
+            total_penalites += penalite
+            print("Pénalité ajoutée pour la longueur du génome")
+
+        if len(self.genome) != len(set(self.genome)):
+            num_duplicates = len(self.genome) - len(set(self.genome))
+            total_penalites += num_duplicates * penalite
+            print(f"Pénalité ajoutée pour {num_duplicates} doublons")
+        
+        # Vérifier si le génome ne passe pas par certains chiffres
+        chiffres_manquants = [chiffre for chiffre in self.reference if chiffre not in self.genome]
+        if chiffres_manquants:
+            total_penalites += penalite
+            print(f"Pénalité ajoutée pour ne pas passer par les chiffres suivants : {chiffres_manquants}")
+
+        self.fitness += total_penalites
+        print(f"Fitness après ajout de pénalités : {self.fitness}")
+
         return self.fitness
