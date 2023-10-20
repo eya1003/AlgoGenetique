@@ -43,6 +43,8 @@ class Graphe :
                     kj = self.matrice_distances[k][j]
                     if ( ik + kj < ij ) :
                         self.matrice_distances[i][j] = ik + kj
+                        
+        #self.affiche_matrice()
     
     # Accesseurs
     def sontVoisins ( self, a, b ) :
@@ -59,9 +61,9 @@ class Graphe :
         
     def getLongueurParcours ( self, parcours ) :
         longueur = 0
-        for i in range ( len(self.best_parcours) - 1 ) :
+        for i in range ( len(parcours) - 1 ) :
             longueur += self.getDistance ( parcours[i], parcours[i+1] )
-        longueur += self.getDistance ( parcours[ len(self.best_parcours) - 1 ], parcours[0] ) # retour au début
+        longueur += self.getDistance ( parcours[ len(parcours) - 1 ], parcours[0] ) # retour au début
         return longueur 
        
     # Fonctions utilisées pour l'affichage
@@ -127,10 +129,10 @@ class Graphe :
     def affiche_matrice ( self ) :
         for i in range ( self.nb_sommets ) :
             for j in range ( self.nb_sommets ) :
-                if ( self.matrice[i][j] == INF ) :
+                if ( self.matrice_distances[i][j] == INF ) :
                     print ( "INF", end = " " )
                 else :
-                    print ( int ( self.matrice[i][j] * 100 ) / 100, end = " " )
+                    print ( int ( self.matrice_distances[i][j] * 100 ) / 100, end = " " )
                 print()
 
 

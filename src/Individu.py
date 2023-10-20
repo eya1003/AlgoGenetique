@@ -9,6 +9,7 @@ class Individu :
         self.reference =  [ i for i in range(100) ]
         self.variableMutation = 20
         self.fitness = 100
+        self.fitness_values = []
         
     def croisement(self, parent2):
         enfant1 = copy.copy(self)
@@ -25,7 +26,6 @@ class Individu :
                 enfant2.genome[i] = self.genome[i]
         return(enfant1, enfant2)
 
-
     def mutation (self):
         #resultat = random.randint(0, 1000000)
         resultat = random.randint(0, 100)
@@ -38,10 +38,11 @@ class Individu :
             self.genome[b] = gardeA
             
             
-    def evaluation(self, g, parcours):
-        self.fitness = g.getLongueurParcours(parcours)
+    def evaluation(self, g):
+        fitness = g.getLongueurParcours(self.genome)
         penalite = 1000
         total_penalites = 0
+        #print(fitness)
 
         if len(self.genome) != 100:
             total_penalites += penalite
@@ -50,15 +51,13 @@ class Individu :
         if len(self.genome) != len(set(self.genome)):
             num_duplicates = len(self.genome) - len(set(self.genome))
             total_penalites += num_duplicates * penalite
-            print(f"Pénalité ajoutée pour {num_duplicates} doublons")
+            #print(f"Pénalité ajoutée pour {num_duplicates} doublons")
+
+        # Liste de tous les chiffres de 0 à 99
+        #chiffres_specifiques = list(range(100))
+
+        fitness += total_penalites
+
         
-        # Vérifier si le génome ne passe pas par certains chiffres
-        chiffres_manquants = [chiffre for chiffre in self.reference if chiffre not in self.genome]
-        if chiffres_manquants:
-            total_penalites += penalite
-            print(f"Pénalité ajoutée pour ne pas passer par les chiffres suivants : {chiffres_manquants}")
 
-        self.fitness += total_penalites
-        print(f"Fitness après ajout de pénalités : {self.fitness}")
-
-        return self.fitness
+        return fitness

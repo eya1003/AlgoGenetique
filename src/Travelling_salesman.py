@@ -15,6 +15,7 @@ r = Region ( w, h, nb_villes )
 g = Graphe ( r, nb_villes )
 
 # Insérer votre code ici
+g.setBestParcours([0,1,2])
 chemin = main(g, r)
 g.setBestParcours ( chemin )
 

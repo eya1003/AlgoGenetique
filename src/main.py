@@ -11,7 +11,7 @@ def main (graphe, r):
         #print("truc")
         population.calcul_proba()
         
-        for j in range ( int(10 / 2) ): #penser a mettre 1000000
+        for j in range ( int(100 / 2) ): #penser a mettre 1000000
             p1 = population.selection ()
             #print(p1.genome)
             p2 = population.selection () 
@@ -24,9 +24,15 @@ def main (graphe, r):
 
         population.setPopulation(populationEnfants)
         
+        fitness_values = []
+        
         for individu in population.population:
-            parcours = individu.genome
-            fit = individu.evaluation(graphe, parcours)
+            fit = individu.evaluation(graphe)
+            
+            # Stocker la fitness de cet individu dans la liste
+            fitness_values.append(fit)
+            #print(f"Fitness après ajout de pénalités : {fit}")
+        print("fitness values", fitness_values)
             
     #Laya essaye quelque chose :
     # Obtenez le meilleur individu de la population
@@ -37,8 +43,7 @@ def main (graphe, r):
     villes_du_parcours = [r.getVilles()[i] for i in meilleur_parcours]
 
     print("Le meilleur parcours prend les villes dans l'ordre suivant:")
-    """for ville in villes_du_parcours:
-        print(ville)"""
+
         
     ### fin du test de Laya
     return population.population[0].genome
