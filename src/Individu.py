@@ -31,8 +31,8 @@ class Individu :
         resultat = random.randint(0, 100)
         #print("résultat = ", resultat)
         if(resultat < self.variableMutation):
-            a = random.randint(0,100)
-            b = random.randint(0,100)
+            a = random.randint(0,99)
+            b = random.randint(0,99)
             gardeA = self.genome[a]
             self.genome[a] = self.genome[b]
             self.genome[b] = gardeA

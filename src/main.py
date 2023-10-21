@@ -7,8 +7,20 @@ from core.Graphe import Graphe
 def main (graphe, r):
     population = Population()
     populationEnfants = []
-    for i in range (10) :
+    for i in range (100) :
         #print("truc")
+        # je pense que la fitness doit être calculée ici
+        fitness_values = []
+        
+        for individu in population.population:
+            fit = individu.evaluation(graphe)
+            
+            # Stocker la fitness de cet individu dans la liste
+            fitness_values.append(fit)
+            #print(f"Fitness après ajout de pénalités : {fit}")
+
+        print("fitness values", fitness_values)
+
         population.calcul_proba()
         
         for j in range ( int(100 / 2) ): #penser a mettre 1000000
@@ -24,15 +36,7 @@ def main (graphe, r):
 
         population.setPopulation(populationEnfants)
         
-        fitness_values = []
         
-        for individu in population.population:
-            fit = individu.evaluation(graphe)
-            
-            # Stocker la fitness de cet individu dans la liste
-            fitness_values.append(fit)
-            #print(f"Fitness après ajout de pénalités : {fit}")
-        print("fitness values", fitness_values)
             
     #Laya essaye quelque chose :
     # Obtenez le meilleur individu de la population
@@ -40,9 +44,9 @@ def main (graphe, r):
     meilleur_parcours = meilleur_individu.genome
 
     # Affichez les villes que le parcours prend
-    villes_du_parcours = [r.getVilles()[i] for i in meilleur_parcours]
+    villes_du_parcours = [r.getVilles()[i].getNumero() for i in meilleur_parcours]
 
-    print("Le meilleur parcours prend les villes dans l'ordre suivant:")
+    print("Le meilleur parcours prend les villes dans l'ordre suivant:", villes_du_parcours)
 
         
     ### fin du test de Laya
