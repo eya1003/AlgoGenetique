@@ -7,7 +7,7 @@ from core.Graphe import Graphe
 def main (graphe, r):
     population = Population()
     populationEnfants = []
-    for i in range (100) :
+    for i in range (10) :
         #print("truc")
         # je pense que la fitness doit être calculée ici
         fitness_values = []
@@ -19,7 +19,8 @@ def main (graphe, r):
             fitness_values.append(fit)
             #print(f"Fitness après ajout de pénalités : {fit}")
 
-        print("fitness values", fitness_values)
+        #print("fitness values", fitness_values)
+        
 
         population.calcul_proba()
         
@@ -42,6 +43,7 @@ def main (graphe, r):
     # Obtenez le meilleur individu de la population
     meilleur_individu = population.population[0]
     meilleur_parcours = meilleur_individu.genome
+    print("getfit: ", meilleur_individu.getFitness())
 
     # Affichez les villes que le parcours prend
     villes_du_parcours = [r.getVilles()[i].getNumero() for i in meilleur_parcours]

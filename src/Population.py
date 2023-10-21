@@ -15,7 +15,13 @@ class Population :
 
     def calcul_proba ( self ) :
         total_fitness = sum(individu.fitness for individu in self.population)
-        self.proba = [individu.fitness/total_fitness for individu in self.population]
+        self.proba = [(individu.fitness)/total_fitness for individu in self.population]
+
+        #Test Céline
+        """total_fitness = sum(1/individu.fitness for individu in self.population)
+        self.proba = [(1/individu.fitness)/total_fitness for individu in self.population]"""
+        #Fin du test
+
         self.proba_totale = 0
         for i in range (len(self.proba)):
             self.proba_totale += self.proba[i]

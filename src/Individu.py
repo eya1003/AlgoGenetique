@@ -57,7 +57,10 @@ class Individu :
         #chiffres_specifiques = list(range(100))
 
         fitness += total_penalites
-
+        self.fitness = fitness
         
 
         return fitness
+    
+    def getFitness(self):
+        return self.fitness
