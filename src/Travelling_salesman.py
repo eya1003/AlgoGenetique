@@ -16,7 +16,7 @@ g = Graphe ( r, nb_villes )
 
 # Insérer votre code ici
 g.setBestParcours([0,1,2])
-chemin = main(g, r, 5)
+chemin = main(g, r, 1)
 g.setBestParcours ( chemin )
 
 # eya essaie d'afficher des informations du ville

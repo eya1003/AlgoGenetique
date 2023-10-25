@@ -51,7 +51,7 @@ class Individu :
         if len(self.genome) != len(set(self.genome)):
             num_duplicates = len(self.genome) - len(set(self.genome))
             total_penalites += num_duplicates * penalite
-            #print(f"Pénalité ajoutée pour {num_duplicates} doublons")
+            print(f"Pénalité ajoutée pour {num_duplicates} doublons")
 
         # Liste de tous les chiffres de 0 à 99
         #chiffres_specifiques = list(range(100))
