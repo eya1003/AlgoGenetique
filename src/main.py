@@ -4,10 +4,10 @@ from core.Region import Region
 from core.Ville import Ville
 from core.Graphe import Graphe
 
-def main (graphe, r):
+def main (graphe, r, nb_generations):
     population = Population()
     populationEnfants = []
-    for i in range (10) :
+    for i in range (nb_generations) :
         #print("truc")
         # je pense que la fitness doit être calculée ici
         fitness_values = []

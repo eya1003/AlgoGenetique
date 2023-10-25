@@ -14,8 +14,8 @@ class Individu :
     def croisement(self, parent2):
         enfant1 = copy.copy(self)
         enfant2 = copy.copy(parent2)
-        a = random.randint(0,100)
-        b = random.randint(0,100)
+        a = random.randint(0,99)
+        b = random.randint(0,99)
         if (a<b):
             for i in range (a, b):
                 enfant1.genome[i] = parent2.genome[i]
