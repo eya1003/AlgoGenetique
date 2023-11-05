@@ -1,5 +1,6 @@
 import copy
 import random
+import math
 
 
 class Individu :
@@ -14,7 +15,7 @@ class Individu :
     def croisement(self, parent2):
         enfant1 = copy.copy(self)
         enfant2 = copy.copy(parent2)
-        a = random.randint(0,99)
+        """a = random.randint(0,99)
         b = random.randint(0,99)
         if (a<b):
             for i in range (a, b):
@@ -23,7 +24,24 @@ class Individu :
         elif (b<a):
             for i in range (b, a):
                 enfant1.genome[i] = parent2.genome[i]
-                enfant2.genome[i] = self.genome[i]
+                enfant2.genome[i] = self.genome[i]"""
+        
+        for i in range (10):
+            echange = random.randint(0, 99)
+            v1 = enfant1.genome[echange]
+            v2 = enfant2.genome[echange]
+            
+            for j in range (len(enfant1.genome)):
+                if (enfant1.genome[j] == v2):
+                    enfant1.genome[echange] = enfant1.genome[j]
+                    enfant1.genome[j] = v1
+                break
+
+            for j in range (len(enfant1.genome)):       
+                if (enfant2.genome[j] == v1):
+                    enfant2.genome[echange] = enfant2.genome[j]
+                    enfant2.genome[j] = v2
+                break
         return(enfant1, enfant2)
 
     def mutation (self):
@@ -46,12 +64,18 @@ class Individu :
 
         if len(self.genome) != 100:
             total_penalites += penalite
-            print("Pénalité ajoutée pour la longueur du génome")
+            #print("Pénalité ajoutée pour la longueur du génome")
 
-        if len(self.genome) != len(set(self.genome)):
+        """if len(self.genome) != len(set(self.genome)):
             num_duplicates = len(self.genome) - len(set(self.genome))
             total_penalites += num_duplicates * penalite
-            print(f"Pénalité ajoutée pour {num_duplicates} doublons")
+            #print(f"Pénalité ajoutée pour {num_duplicates} doublons")"""
+        
+        #test Céline
+        if len(self.genome) != len(set(self.genome)):
+            num_duplicates = len(self.genome) - len(set(self.genome))
+            total_penalites += (num_duplicates * penalite) + math.exp( num_duplicates )
+
 
         # Liste de tous les chiffres de 0 à 99
         #chiffres_specifiques = list(range(100))
