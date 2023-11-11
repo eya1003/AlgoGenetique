@@ -55,6 +55,22 @@ class Individu :
             self.genome[a] = self.genome[b]
             self.genome[b] = gardeA
             
+    def mutation_echange_deux_genes(self):
+        resultat = random.randint(0, 100)
+        if resultat < self.variableMutation:
+            a, b = random.sample(range(100), 2)
+            gardeA = self.genome[a]
+            self.genome[a] = self.genome[b]
+            self.genome[b] = gardeA
+            
+    def mutation_deplacement(self):
+        resultat = random.randint(0, 100)
+        if resultat < self.variableMutation:
+            index1, index2 = random.sample(range(100), 2)
+            gene_a_deplacer = self.genome.pop(index1)
+            self.genome.insert(index2, gene_a_deplacer)
+
+
             
     def evaluation(self, g):
         fitness = g.getLongueurParcours(self.genome)
