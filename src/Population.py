@@ -5,6 +5,7 @@ from Individu import *
 class Population :
     def __init__(self):
         self.population = 10000*[Individu]
+        # self.population = 100*[Individu]
         for i in range (len(self.population)):
             self.population[i] = Individu()
         #self.population = 1000000*[Individu()]

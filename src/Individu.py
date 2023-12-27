@@ -13,19 +13,149 @@ class Individu :
         self.fitness_values = []
         
     def croisement(self, parent2):
-        enfant1 = copy.copy(self)
-        enfant2 = copy.copy(parent2)
-        """a = random.randint(0,99)
+        #   voir pour le stack overflow du compteur et de parent2.genome[compteur1] --> le parent2 ne change pas
+        enfant1 = copy.deepcopy(self)
+        enfant2 = copy.deepcopy(parent2)
+        garderval1 = []
+        garderval2 = []
+        a = random.randint(0,99)
         b = random.randint(0,99)
         if (a<b):
+            compteur1 = b
+            compteur2 = b
             for i in range (a, b):
-                enfant1.genome[i] = parent2.genome[i]
-                enfant2.genome[i] = self.genome[i]
+                parent2mem = parent2.genome[i]
+                parent1mem = self.genome[i]
+                enfant1.genome[i] = parent2mem
+                garderval1.append(parent2mem)
+                enfant2.genome[i] = parent1mem
+                garderval2.append(parent1mem)
+
+            for i in range (b, len(enfant1.genome)):
+                
+                while (self.genome[compteur1] in garderval1):
+                    # print("parent 1 : ", parent2.genome[compteur1])
+                    # print("compteur 1 : ", compteur1)
+                    if (compteur1+1<len(enfant1.genome)):
+                        compteur1+=1
+                    else:
+                        compteur1=0
+                enfant1.genome[i] = self.genome[compteur1]
+                garderval1.append(self.genome[compteur1])
+
+                while (parent2.genome[compteur2] in garderval2):
+                    #print("parent 2 : ", self.genome[compteur2])
+                    #print("compteur 2 : ", compteur2)
+                    if (compteur2+1<len(enfant2.genome)):
+                        compteur2+=1
+                    else:
+                        compteur2=0
+                enfant2.genome[i] = parent2.genome[compteur2]
+                garderval2.append(parent2.genome[compteur2])
+
+                if (compteur1+1<len(enfant1.genome)):
+                    compteur1+=1
+                else:
+                    compteur1=0
+                if (compteur2+1<len(enfant2.genome)):
+                    compteur2+=1
+                else:
+                    compteur2=0
+
+            for i in range (0, a):
+                while (self.genome[compteur1] in garderval1):
+                    #print("parent 1 : ", parent2.genome[compteur1])
+                    #print("compteur 1 : ", compteur1)
+                    if (compteur1+1<len(enfant1.genome)):
+                        compteur1+=1
+                    else:
+                        compteur1=0
+                enfant1.genome[i] = self.genome[compteur1]
+                garderval1.append(self.genome[compteur1])
+
+                while (parent2.genome[compteur2] in garderval2):
+                    #print("parent 2 : ", parenté.genome[compteur2])
+                    #print("compteur 2 : ", compteur2)
+                    if (compteur2+1<len(enfant2.genome)):
+                        compteur2+=1
+                    else:
+                        compteur2=0
+                enfant2.genome[i] = parent2.genome[compteur2]
+                garderval2.append(parent2.genome[compteur2])
+
+                if (compteur1+1<len(enfant1.genome)):
+                    compteur1+=1
+                else:
+                    compteur1=0
+                if (compteur2+1<len(enfant2.genome)):
+                    compteur2+=1
+                else:
+                    compteur2=0
+                
         elif (b<a):
+            compteur1 = a
+            compteur2 = a
             for i in range (b, a):
-                enfant1.genome[i] = parent2.genome[i]
-                enfant2.genome[i] = self.genome[i]"""
-        
+                parent2mem = parent2.genome[i]
+                parent1mem = self.genome[i]
+                enfant1.genome[i] = parent2mem
+                garderval1.append(parent2mem)
+                enfant2.genome[i] = parent1mem
+                garderval2.append(parent1mem)
+
+            for i in range (a, len(enfant1.genome)):
+                
+                while (self.genome[compteur1] in garderval1):
+                    if (compteur1+1<len(enfant1.genome)):
+                        compteur1+=1
+                    else:
+                        compteur1=0
+                enfant1.genome[i] = self.genome[compteur1]
+                garderval1.append(self.genome[compteur1])
+
+                while (parent2.genome[compteur2] in garderval2):
+                    if (compteur2+1<len(enfant2.genome)):
+                        compteur2+=1
+                    else:
+                        compteur2=0
+                enfant2.genome[i] = parent2.genome[compteur2]
+                garderval2.append(self.genome[compteur2])
+
+                if (compteur1+1<len(enfant1.genome)):
+                    compteur1+=1
+                else:
+                    compteur1=0
+                if (compteur2+1<len(enfant2.genome)):
+                    compteur2+=1
+                else:
+                    compteur2=0
+
+            for i in range (0, b):
+                while (self.genome[compteur1] in garderval1):
+                    if (compteur1+1<len(enfant1.genome)):
+                        compteur1+=1
+                    else:
+                        compteur1=0
+                enfant1.genome[i] = self.genome[compteur1]
+                garderval1.append(self.genome[compteur1])
+
+                while (parent2.genome[compteur2] in garderval2):
+                    if (compteur2+1<len(enfant2.genome)):
+                        compteur2+=1
+                    else:
+                        compteur2=0
+                enfant2.genome[i] = parent2.genome[compteur2]
+                garderval2.append(parent2.genome[compteur2])
+
+                if (compteur1+1<len(enfant1.genome)):
+                    compteur1+=1
+                else:
+                    compteur1=0
+                if (compteur2+1<len(enfant2.genome)):
+                    compteur2+=1
+                else:
+                    compteur2=0
+        '''
         for i in range (10):
             echange = random.randint(0, 99)
             v1 = enfant1.genome[echange]
@@ -41,12 +171,16 @@ class Individu :
                 if (enfant2.genome[j] == v1):
                     enfant2.genome[echange] = enfant2.genome[j]
                     enfant2.genome[j] = v2
-                break
+                break'''
+        # print("garder val 1 : ", garderval1)
+        # print("garder val 2 : ", garderval2)
+        # print("enfant1 : ", enfant1.genome)
+        # print("enfant2 : ", enfant2.genome)
         return(enfant1, enfant2)
 
     def mutation (self):
         #resultat = random.randint(0, 1000000)
-        resultat = random.randint(0, 100)
+        resultat = random.randint(0, 99)
         #print("résultat = ", resultat)
         if(resultat < self.variableMutation):
             a = random.randint(0,99)
@@ -56,17 +190,17 @@ class Individu :
             self.genome[b] = gardeA
             
     def mutation_echange_deux_genes(self):
-        resultat = random.randint(0, 100)
+        resultat = random.randint(0, 99)
         if resultat < self.variableMutation:
-            a, b = random.sample(range(100), 2)
+            a, b = random.sample(range(99), 2)
             gardeA = self.genome[a]
             self.genome[a] = self.genome[b]
             self.genome[b] = gardeA
             
     def mutation_deplacement(self):
-        resultat = random.randint(0, 100)
+        resultat = random.randint(0, 99)
         if resultat < self.variableMutation:
-            index1, index2 = random.sample(range(100), 2)
+            index1, index2 = random.sample(range(99), 2)
             gene_a_deplacer = self.genome.pop(index1)
             self.genome.insert(index2, gene_a_deplacer)
 

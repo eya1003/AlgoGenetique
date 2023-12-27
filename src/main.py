@@ -24,11 +24,11 @@ def main (graphe, r, nb_generations):
         population.calcul_proba_fitness()
 
         populationEnfants = []
-        for j in range ( int(10000 / 2) ): #penser a mettre 1000000
+        for j in range ( int(100 / 2) ): #penser a mettre 1000000
             p1 = population.selection_fitness_tournois()
             #print(p1.genome)
             p2 = population.selection_fitness_tournois() 
-            #print(p2.genome)
+            print("avance")
             (e1, e2) = p1.croisement( p2)
             e1.mutation ()
             e2.mutation()
@@ -62,3 +62,76 @@ def main (graphe, r, nb_generations):
 
 #if __name__ == '__main__' :
 #   sys.exit(main())
+
+################### Tests Celine #####################
+'''
+def cooldown(temp):
+    return (90 * temp) / 100
+
+def TSPUtil(nb_gen):
+    # Generation Number
+    gen = 1
+    # Number of Gene Iterations
+    gen_thres = nb_gen
+
+    population = []
+    temp = individual()
+
+    # Populating the GNOME pool.
+    for i in range(POP_SIZE):
+        temp.gnome = create_gnome()
+        temp.fitness = cal_fitness(temp.gnome)
+        population.append(temp)
+
+    print("\nInitial population: \nGNOME     FITNESS VALUE\n")
+    for i in range(POP_SIZE):
+        print(population[i].gnome, population[i].fitness)
+    print()
+
+    found = False
+    temperature = 10000
+
+    # Iteration to perform
+    # population crossing and gene mutation.
+    while temperature > 1000 and gen <= gen_thres:
+        population.sort()
+        print("\nCurrent temp: ", temperature)
+        new_population = []
+
+        for i in range(POP_SIZE):
+            p1 = population[i]
+
+            while True:
+                new_g = mutatedGene(p1.gnome)
+                new_gnome = individual()
+                new_gnome.gnome = new_g
+                new_gnome.fitness = cal_fitness(new_gnome.gnome)
+
+                if new_gnome.fitness <= population[i].fitness:
+                    new_population.append(new_gnome)
+                    break
+
+                else:
+
+                    # Accepting the rejected children at
+                    # a possible probability above threshold.
+                    prob = pow(
+                        2.7,
+                        -1
+                        * (
+                            (float)(new_gnome.fitness - population[i].fitness)
+                            / temperature
+                        ),
+                    )
+                    if prob > 0.5:
+                        new_population.append(new_gnome)
+                        break
+
+        temperature = cooldown(temperature)
+        population = new_population
+        print("Generation", gen)
+        print("GNOME     FITNESS VALUE")
+
+        for i in range(POP_SIZE):
+            print(population[i].gnome, population[i].fitness)
+        gen += 1'''
