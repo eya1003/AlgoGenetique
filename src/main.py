@@ -28,8 +28,8 @@ def main (graphe, r, nb_generations):
         # Générer des enfants par croisement et mutation
         for j in range(int(10000 / 2)):
             # Sélection des parents
-            parent1 = population.selection_fitness_tournois()
-            parent2 = population.selection_fitness_tournois()
+            parent1 = population.selection_by_rang(graphe)
+            parent2 = population.selection_by_rang(graphe)
 
             # Croisement avec correction
             e1, e2 = parent1.croisement_avec_correction_et_trajet(parent1, parent2)

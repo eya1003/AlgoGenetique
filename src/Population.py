@@ -1,6 +1,7 @@
 import random
 
 from Individu import *
+import numpy as np
 
 class Population :
     def __init__(self):
@@ -106,3 +107,38 @@ class Population :
                 candidat = candidat2
         #print("final : ", candidat.getFitness())
         return candidat
+    """
+    #APPEL du fonction dans individu pour l'evaluation 
+    def evaluer_fitness(self, individu, graphe):
+        return individu.evaluation(graphe)
+    
+    def selection_par_rang(self, graphe):
+        # pour le trie avec fitness 
+        sorted_indices = sorted(range(len(self.population)), key=lambda i: self.evaluer_fitness(self.population[i], graphe))
+        # appel à la fonction de selection 
+        selected_index = np.random.choice(sorted_indices, p=self.calculate_selection_probabilities(), replace=True)
+ 
+        return self.population[selected_index]
+    #cette fonction probabilités de sélection en fonction des rangs
+    def calculate_selection_probabilities(self):
+        rangs = list(range(1, len(self.population) + 1))
+        total_rang = sum(rangs)
+        return [rang / total_rang for rang in rangs]
+    #cette fonction probabilités de sélection en fonction des rangs
+    """
+    def evaluate_fitness(self, graphe):
+        for individu in self.population:
+            individu.evaluation(graphe)
+
+    def calculate_selection_probabilities(self):
+        sorted_indices = sorted(range(len(self.population)), key=lambda i: self.population[i].getFitness())
+        ranks = list(range(1, len(self.population) + 1))
+        total_rank = sum(ranks)
+        return [rank / total_rank for rank in ranks]
+    
+    def selection_by_rang(self, graphe):
+        self.evaluate_fitness(graphe)
+        self.calcul_proba_fitness()
+        self.proba = self.calculate_selection_probabilities()
+        selected_index = np.random.choice(range(len(self.population)), p=self.proba)
+        return self.population[selected_index]

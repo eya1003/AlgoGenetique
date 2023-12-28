@@ -34,7 +34,6 @@ for i in chemin:
     #    ville_visitees.append(i)
 
 
-
 # Affichage du résultat
 print ( "Distance finale :", int(g.getLongueurParcours(g.getBestParcours())), "kilomètres" )
 fenetre = MainWindow( r, g )
