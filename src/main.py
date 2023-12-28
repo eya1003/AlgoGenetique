@@ -24,17 +24,24 @@ def main (graphe, r, nb_generations):
         population.calcul_proba_fitness()
 
         populationEnfants = []
-        for j in range ( int(10000 / 2) ): #penser a mettre 1000000
-            p1 = population.selection_fitness_tournois()
-            #print(p1.genome)
-            p2 = population.selection_fitness_tournois() 
-            #print(p2.genome)
-            (e1, e2) = p1.croisement( p2)
-            e1.mutation ()
+      
+        # Générer des enfants par croisement et mutation
+        for j in range(int(10000 / 2)):
+            # Sélection des parents
+            parent1 = population.selection_fitness_tournois()
+            parent2 = population.selection_fitness_tournois()
+
+            # Croisement avec correction
+            e1, e2 = parent1.croisement_avec_correction_et_trajet(parent1, parent2)
+
+            # Mutation des enfants
+            e1.mutation()
             e2.mutation()
+
             populationEnfants.append(e1)
             populationEnfants.append(e2)
-            # afficher les villes dans le tableau
+
+
 
         population.setPopulation(populationEnfants)
         

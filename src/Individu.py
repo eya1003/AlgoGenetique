@@ -12,6 +12,7 @@ class Individu :
         self.fitness = 100
         self.fitness_values = []
         
+    
     def croisement(self, parent2):
         enfant1 = copy.copy(self)
         enfant2 = copy.copy(parent2)
@@ -43,7 +44,40 @@ class Individu :
                     enfant2.genome[j] = v2
                 break
         return(enfant1, enfant2)
+    #test_eya
+    
+    def croisement_avec_correction_et_trajet(self, parent1, parent2):
+        debut = random.randint(1, len(parent1.genome) - 1)
 
+        enfant1_genome = parent1.genome[:debut] + parent2.genome[debut:]
+        
+        
+        enfant2_genome = parent2.genome[:debut] + parent1.genome[debut:]
+        enfant1 = self.create_and_correct_individual(enfant1_genome)
+        enfant2 = self.create_and_correct_individual(enfant2_genome)
+
+
+        return enfant1, enfant2
+
+    def create_and_correct_individual(self, genome):
+        individu = Individu()
+        individu.genome = self.distance_calcul(genome)
+        return individu
+
+    def distance_calcul(self, trajet):
+
+        final_ville = []
+        tab_villes= set()
+        for ville in trajet:
+            if ville not in tab_villes:
+                final_ville.append(ville)
+                tab_villes.add(ville)
+        ajout = set(range(len(trajet))) - tab_villes
+        final_ville.extend(ajout)
+
+        return final_ville
+
+    
     def mutation (self):
         #resultat = random.randint(0, 1000000)
         resultat = random.randint(0, 100)
