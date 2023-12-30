@@ -12,7 +12,7 @@ class Individu :
         self.fitness = 100
         self.fitness_values = []
         
-    def croisement(self, parent2):
+    def croisement_permut_decal(self, parent2):
         #   voir pour le stack overflow du compteur et de parent2.genome[compteur1] --> le parent2 ne change pas
         enfant1 = copy.deepcopy(self)
         enfant2 = copy.deepcopy(parent2)
