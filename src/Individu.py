@@ -16,10 +16,23 @@ class Individu :
         #   voir pour le stack overflow du compteur et de parent2.genome[compteur1] --> le parent2 ne change pas
         enfant1 = copy.deepcopy(self)
         enfant2 = copy.deepcopy(parent2)
+        verif1 = 0
+        verif2 = 0
         garderval1 = []
         garderval2 = []
         a = random.randint(0,99)
         b = random.randint(0,99)
+        
+        for i in range (100):
+            if not(i in enfant1.genome) :
+                for j in range (100):
+                    if (enfant1.genome.count(j)>1):
+                        enfant1.genome[enfant1.genome.index(j)] = i
+            if not(i in enfant2.genome) :
+                for j in range (100):
+                    if (enfant1.genome.count(j)>1):
+                        enfant1.genome[enfant1.genome.index(j)] = i
+
         if (a<b):
             compteur1 = b
             compteur2 = b
@@ -35,7 +48,8 @@ class Individu :
                 
                 while (self.genome[compteur1] in garderval1):
                     # print("parent 1 : ", parent2.genome[compteur1])
-                    # print("compteur 1 : ", compteur1)
+                    # print("valeur 1 : ", garderval1)
+                    # # print("compteur 1 : ", compteur1)
                     if (compteur1+1<len(enfant1.genome)):
                         compteur1+=1
                     else:
@@ -44,7 +58,8 @@ class Individu :
                 garderval1.append(self.genome[compteur1])
 
                 while (parent2.genome[compteur2] in garderval2):
-                    #print("parent 2 : ", self.genome[compteur2])
+                    # print("parent 2 : ", self.genome[compteur2])
+                    # print("valeur 2 : ", garderval2)
                     #print("compteur 2 : ", compteur2)
                     if (compteur2+1<len(enfant2.genome)):
                         compteur2+=1
@@ -62,10 +77,11 @@ class Individu :
                 else:
                     compteur2=0
 
-            for i in range (0, a):
+            for i in range (a):
                 while (self.genome[compteur1] in garderval1):
-                    #print("parent 1 : ", parent2.genome[compteur1])
-                    #print("compteur 1 : ", compteur1)
+                    # print("parent 1 : ", parent2.genome[compteur1])
+                    # print("valeur 1 : ", garderval1)
+                    ## print("compteur 1 : ", compteur1)
                     if (compteur1+1<len(enfant1.genome)):
                         compteur1+=1
                     else:
@@ -74,8 +90,9 @@ class Individu :
                 garderval1.append(self.genome[compteur1])
 
                 while (parent2.genome[compteur2] in garderval2):
-                    #print("parent 2 : ", parenté.genome[compteur2])
-                    #print("compteur 2 : ", compteur2)
+                    # print("parent 2 : ", parent2.genome[compteur2])
+                    # print("valeur 2 : ", garderval2)
+                    ## print("compteur 2 : ", compteur2)
                     if (compteur2+1<len(enfant2.genome)):
                         compteur2+=1
                     else:
@@ -106,6 +123,8 @@ class Individu :
             for i in range (a, len(enfant1.genome)):
                 
                 while (self.genome[compteur1] in garderval1):
+                    # print("parent 1 : ", self.genome[compteur1])
+                    # print("valeur 1 : ", garderval1)
                     if (compteur1+1<len(enfant1.genome)):
                         compteur1+=1
                     else:
@@ -114,6 +133,8 @@ class Individu :
                 garderval1.append(self.genome[compteur1])
 
                 while (parent2.genome[compteur2] in garderval2):
+                    # print("parent 2 : ", parent2.genome[compteur2])
+                    # print("valeur 2 : ", garderval2)
                     if (compteur2+1<len(enfant2.genome)):
                         compteur2+=1
                     else:
@@ -130,8 +151,10 @@ class Individu :
                 else:
                     compteur2=0
 
-            for i in range (0, b):
+            for i in range (b):
                 while (self.genome[compteur1] in garderval1):
+                    # print("parent 1 : ", self.genome[compteur2])
+                    # print("valeur 1 : ", garderval1)
                     if (compteur1+1<len(enfant1.genome)):
                         compteur1+=1
                     else:
@@ -140,6 +163,8 @@ class Individu :
                 garderval1.append(self.genome[compteur1])
 
                 while (parent2.genome[compteur2] in garderval2):
+                    # print("parent 2 : ", parent2.genome[compteur2])
+                    # print("valeur 2 : ", garderval2)
                     if (compteur2+1<len(enfant2.genome)):
                         compteur2+=1
                     else:
@@ -155,6 +180,10 @@ class Individu :
                     compteur2+=1
                 else:
                     compteur2=0
+
+        
+        
+
         '''
         for i in range (10):
             echange = random.randint(0, 99)
@@ -172,16 +201,16 @@ class Individu :
                     enfant2.genome[echange] = enfant2.genome[j]
                     enfant2.genome[j] = v2
                 break'''
-        # print("garder val 1 : ", garderval1)
-        # print("garder val 2 : ", garderval2)
-        # print("enfant1 : ", enfant1.genome)
-        # print("enfant2 : ", enfant2.genome)
+        # # print("garder val 1 : ", garderval1)
+        # # print("garder val 2 : ", garderval2)
+        # # print("enfant1 : ", enfant1.genome)
+        # # print("enfant2 : ", enfant2.genome)
         return(enfant1, enfant2)
 
     def mutation (self):
         #resultat = random.randint(0, 1000000)
         resultat = random.randint(0, 99)
-        #print("résultat = ", resultat)
+        ## print("résultat = ", resultat)
         if(resultat < self.variableMutation):
             a = random.randint(0,99)
             b = random.randint(0,99)
@@ -210,16 +239,16 @@ class Individu :
         fitness = g.getLongueurParcours(self.genome)
         penalite = 1000
         total_penalites = 0
-        #print(fitness)
+        ## print(fitness)
 
         if len(self.genome) != 100:
             total_penalites += penalite
-            #print("Pénalité ajoutée pour la longueur du génome")
+            ## print("Pénalité ajoutée pour la longueur du génome")
 
         """if len(self.genome) != len(set(self.genome)):
             num_duplicates = len(self.genome) - len(set(self.genome))
             total_penalites += num_duplicates * penalite
-            #print(f"Pénalité ajoutée pour {num_duplicates} doublons")"""
+            ## print(f"Pénalité ajoutée pour {num_duplicates} doublons")"""
         
         #test Céline
         if len(self.genome) != len(set(self.genome)):
