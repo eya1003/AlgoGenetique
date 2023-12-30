@@ -44,7 +44,18 @@ class Population :
         
         return  self[random.randint(0, 1000000)]
     
-    
+    def selection_par_rang(self):
+        # Triez la population en fonction de la fitness
+        population_triee = sorted(self.population, key=lambda individu: individu.getFitness())
+        
+        # Associez un poids de sélection à chaque rang
+        poids_rang = [i + 1 for i in range(len(self.population))]
+        
+        # Effectuez la sélection en fonction des poids de rang
+        individu_selectionne = random.choices(population_triee, weights=poids_rang)[0]
+        
+        return individu_selectionne
+
     
     def selection_fitness (self):
         #print("proba :", self.calcul_proba())

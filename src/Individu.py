@@ -214,6 +214,42 @@ class Individu :
                     compteur2=0
 
         return(enfant1, enfant2)
+    #test_eya
+    def croisement_multipoints(self, parent2):
+        
+        enfant1 = copy.deepcopy(self)
+        enfant2 = copy.deepcopy(parent2)
+
+        # Définir plusieurs points de croisement
+        points_de_croisement = sorted(random.sample(range(1, 99), 3))
+
+        # Initialiser les indices de début et de fin pour le premier segment
+        start_index = 0
+        end_index = points_de_croisement[0]
+
+        # Effectuer le croisement en alternant les segments
+        for point in points_de_croisement:
+            if start_index % 2 == 0:
+                enfant1.genome[start_index:end_index] = parent2.genome[start_index:end_index]
+                enfant2.genome[start_index:end_index] = self.genome[start_index:end_index]
+            else:
+                enfant1.genome[start_index:end_index] = self.genome[start_index:end_index]
+                enfant2.genome[start_index:end_index] = parent2.genome[start_index:end_index]
+
+            # Mettre à jour les indices de début et de fin pour le prochain segment
+            start_index = end_index
+            end_index = point
+
+        # Effectuer le dernier segment
+        if start_index % 2 == 0:
+            enfant1.genome[start_index:] = parent2.genome[start_index:]
+            enfant2.genome[start_index:] = self.genome[start_index:]
+        else:
+            enfant1.genome[start_index:] = self.genome[start_index:]
+            enfant2.genome[start_index:] = parent2.genome[start_index:]
+
+
+        return enfant1, enfant2
 
     def mutation (self):
         #resultat = random.randint(0, 1000000)
