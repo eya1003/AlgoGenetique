@@ -29,7 +29,7 @@ def main (graphe, r, nb_generations):
             #print(p1.genome)
             p2 = population.selection_fitness_tournois() 
             #print(p2.genome)
-            (e1, e2) = p1.croisement( p2)
+            (e1, e2) = p1.croisement_avec_correction_et_trajet(p1,p2)
             e1.mutation ()
             e2.mutation()
             populationEnfants.append(e1)
